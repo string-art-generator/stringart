@@ -1,5 +1,11 @@
-# StringArt Generator
 
+
+
+Welcome! You can generate your own string art creations online at: https://stringart.vip/
+
+Feel free to submit your works via Pull Request (PR) to this repository and share your creations with the community!
+
+# StringArt Generator
 This site implements an automatic image-to-string-art conversion tool. After uploading an image, the system automatically processes, analyzes, and generates the string connection sequence, dynamically displays the string art effect on the canvas, and allows exporting or step-by-step demonstration of the process.
 
 ----
