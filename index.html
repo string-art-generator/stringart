@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+         <meta name="description" content="String Art teaching. Create stunning string art from your image with our String Art Generator. ">
+        <meta name="keywords" content="string art, string art generator, image to string art, string art patterns, string art online">
+        <meta name="author" content="stringart.vip">
+        <link rel="canonical" href="https://stringart.vip/">
+        <title>String Art</title>
+    </head>
+<body>
+    <header> 
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: #003366;">
+            <a class="navbar-brand font-weight-bold" href="#" style="font-size:1.3rem;">String Art</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="tutorial.html">DIY tutorial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="examples.html">Examples</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>  
+    </header>
+    <main>
+        <div class="container-fluid main-flex-container" style="display: flex; flex-direction: column;  "> 
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div class="left-panel" style="width:100%;">
+                            <div class="jumbotron jumbotron-custom mb-3">
+                                <h2>String Art Generator</h2>   <h4 id="status"> </h4>  
+                                <div class="variables-box">
+                                    <h5>Variables to play with:</h5>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="numberOfPins">Number of Pins</label>
+                                            <input type="text" class="form-control" id="numberOfPins">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="numberOfLines">Number of Lines</label>
+                                            <input type="text" class="form-control" id="numberOfLines">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="lineWeight">Line Weight</label>
+                                            <input type="text" class="form-control" id="lineWeight">
+                                        </div>
+                                    </div>
+                                    <label class="btn btn-primary btn-file mt-2">
+                                        Select an Image <input type="file" id="fileInput" style="display: none;">
+                                    </label>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" style="height: 100%; min-height: 480px; border: 1px solid lightgray;"> 
+                    <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
+                        <div id="step1" class="inputoutput center hidden mb-3">
+                            <img class="centerImage" id="imageSrc" alt="No Image" />
+                        </div>
+                        <div id="step2" class="inputoutput center hidden mb-3">
+                            <div class="caption">Cropped and Grayscaled:</div>
+                            <canvas class="centerCanvasMedium" id="canvasOutput" ></canvas>
+                        </div>
+                        <div id="step3" class="inputoutput center hidden mb-3">
+                            <div class="caption">String Art Output:</div>
+                            <div id="drawStatus"></div>
+                            <canvas class="centerCanvasLarge" id="canvasOutput2" ></canvas>
+                        </div>
+                        <div id="showPins" class="inputoutput center hidden mb-3">
+                            <textarea id="pinsOutput" rows="5" cols="70"></textarea>
+                            <div class="centerBorderless"> 
+                            </div> 
+                        
+                        </div>
+                    </div> 
+                    <div class="col-12 col-lg-6 d-flex flex-column align-items-center">
+                        <div id="incrementalDrawing" class="inputoutput center hidden mb-3">
+                            <div class="caption">String Art Output:</div>
+                            <span id="incrementalCurrentStep"></span>
+                            <div id="drawStatus"></div>
+                            <canvas class="centerCanvasLarge" id="canvasOutput3" ></canvas>
+                            <div class="d-flex justify-content-between mt-2">
+                                <button class="btn btn-secondary btn-sm" onclick="lastStep();">Last Step</button>
+                                <button class="btn btn-primary btn-sm" onclick="nextStep();">Next Step</button>
+                            </div>
+                            <span>Copy these numbers to save them for later, so you won’t need to generate them again.</span><br/>
+                            <span>If you have numbers from a previous session, paste them above.</span><br/>
+                            <span>These numbers will guide you step by step as you create your string art.</span><br/>
+                            <div class="d-flex justify-content-between mt-2">
+                                <button class="btn btn-success btn-sm" onclick="startCreating();">Start Creating</button>
+                                <button class="btn btn-info btn-sm" onclick="startDrawing();">Just Draw</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- String Art Introduction Section -->
+        <div class="container mt-auto mb-5" >
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <h3 class="card-title mb-3" style="font-weight:700; color:#003366;">String Art Introduction</h3>
+                    <p class="card-text" style="font-size:1.1rem;">String Art is an art form that creates intricate geometric patterns by winding colored threads or strings between nails placed at various positions. It is essentially a <b>fusion of mathematics and art</b>, using the dense arrangement and intersection of straight lines (chords) to produce stunning curves, shadows, and even three-dimensional effects.</p>
+                    <h5 class="mt-4 mb-2" style="font-weight:600;">Core Elements</h5>
+                    <ol style="font-size:1.05rem;">
+                        <li><b>Board</b>: Usually a sturdy material such as wood, corkboard, cardboard, or foam board.</li>
+                        <li><b>Nails/Pins</b>: Precisely hammered into the board according to the design's outline and key points. The density of the nails determines the final image's detail.</li>
+                        <li><b>String/Thread</b>: Different colors and types of thread (such as cotton, embroidery floss, or silk) are wound repeatedly between the nails, layering to form the pattern.</li>
+                    </ol>
+                    <h5 class="mt-4 mb-2" style="font-weight:600;">Creation Process</h5>
+                    <ol style="font-size:1.05rem;">
+                        <li><b>Design the Pattern</b>: Create the desired pattern on paper or digitally.</li>
+                        <li><b>Transfer the Pattern</b>: Trace or draw the pattern onto the board.</li>
+                        <li><b>Hammer the Nails</b>: Place nails along the key outline and internal structure points. This is the most time-consuming and crucial step, as nail placement determines the final image's accuracy.</li>
+                        <li><b>Wind the String</b>: Starting from a chosen point, wind the string between nails in a specific order or mathematical rule (or freely), controlling direction, density, and color to shape the image, shading, and texture.</li>
+                        <li><b>Finish and Secure</b>: Secure and hide the string ends after winding. The artwork is now complete.</li>
+                    </ol>
+                    <hr/>
+                    <h5 class="mt-4 mb-2" style="font-weight:600;">Key Features </h5>
+                    <ul style="font-size:1.05rem;">
+                        <li><b>From Straight Lines to Curves</b>: The most fascinating mathematical principle of String Art. Although each string is straight, when many are arranged at specific angles, their <b>envelope</b> visually forms smooth curves. For example, in a circular pattern, all lines are straight, but the overall look is a circle.</li>
+                        <li><b>Strong Geometric and Orderly Beauty</b>: Works are full of precise symmetry, spirals, and radiating structures, giving a sense of rigor, harmony, and rational beauty.</li>
+                        <li><b>Unique Texture and Depth</b>: Layered strings create rich textures and shadows, giving two-dimensional works a surprising three-dimensional and dynamic feel.</li>
+                        <li><b>Flexible Complexity</b>: You can create highly detailed portraits or simple modern geometric shapes, letters, or logos. String Art is suitable for decoration, gifts, or as a unique artistic presentation for company logos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+<script src="main.js" type="text/javascript"></script>
+<script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
